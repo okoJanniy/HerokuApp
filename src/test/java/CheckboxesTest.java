@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class CheckboxesTest extends BaseTest {
 
     @Test
-    public void CheckAndPushCheckBoxes() {
+    public void checkAndPushCheckBoxes() {
         driver.get("http://the-internet.herokuapp.com/checkboxes");
         WebElement checkBox1 = driver.findElement(By.cssSelector("[type=checkbox]"));
         if (checkBox1.isSelected()) {

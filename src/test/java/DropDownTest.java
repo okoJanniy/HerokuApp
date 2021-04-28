@@ -9,7 +9,7 @@ import java.util.List;
 public class DropDownTest extends BaseTest {
 
     @Test
-    public void TakeAllTheElementsAndCheckForTheirPresence() {
+    public void takeAllTheElementsAndCheckForTheirPresence() {
         driver.get("http://the-internet.herokuapp.com/dropdown");
         WebElement dropDown = driver.findElement(By.id("dropdown"));
         Select select = new Select(dropDown);
