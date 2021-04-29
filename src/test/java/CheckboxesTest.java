@@ -2,30 +2,23 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
 public class CheckboxesTest extends BaseTest {
 
     @Test
     public void checkAndPushCheckBoxes() {
         driver.get("http://the-internet.herokuapp.com/checkboxes");
-        WebElement checkBox1 = driver.findElement(By.cssSelector("[type=checkbox]"));
-        if (checkBox1.isSelected()) {
-            System.out.println("Флажок установлен");
-        } else {
-            System.out.println("Флажок отключен");
-            checkBox1.click();
-        }
-        if (checkBox1.isSelected()) {
-            System.out.println("Флажок установлен");
-        }
-        WebElement checkBox2 = driver.findElement(By.cssSelector("[type=checkbox]"));
-        if (checkBox2.isSelected()) {
-            System.out.println("Флажок установлен");
-        }else{
-            System.out.println("Флажок отключен");
-            checkBox2.click();
-        }
-        if (checkBox2.isSelected()){
-            System.out.println("Флажок отключен");
-        }
+        List<WebElement> checkBoxes = driver.findElements(By.cssSelector("[type=checkbox]"));
+        assertFalse(checkBoxes.get(0).isSelected(), "Checkbox is selected");
+        checkBoxes.get(0).click();
+        assertTrue(checkBoxes.get(0).isSelected(), "Checkbox not selected");
+        assertTrue(checkBoxes.get(1).isSelected(), "Checkbox not selected");
+        checkBoxes.get(1).click();
+        assertFalse(checkBoxes.get(1).isSelected(), "Checkbox is selected");
+
     }
 }
