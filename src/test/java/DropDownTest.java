@@ -1,10 +1,9 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.List;
+import static org.testng.Assert.assertEquals;
 
 public class DropDownTest extends BaseTest {
 
@@ -13,13 +12,12 @@ public class DropDownTest extends BaseTest {
         driver.get("http://the-internet.herokuapp.com/dropdown");
         WebElement dropDown = driver.findElement(By.id("dropdown"));
         Select select = new Select(dropDown);
-        select.selectByVisibleText("Option 2");
+        select.selectByVisibleText("Option 1");
         String selectedText = select.getFirstSelectedOption().getText();
-        Assert.assertEquals(selectedText, "Option 2");
-        List<WebElement> options = select.getOptions();
-        for (WebElement element : options) {
-            System.out.println(element.getText());
-        }
+        assertEquals(selectedText, "Option 1", "Option 1 not selected");
+        select.selectByVisibleText("Option 2");
+        String selectedText2 = select.getFirstSelectedOption().getText();
+        assertEquals(selectedText2, "Option 2", "Option 2 not selected");
         driver.quit();
     }
 }
